@@ -13,8 +13,6 @@ interface NoteDao {
     @Query("SELECT * FROM note WHERE uid IN (:userIds)")
     fun loadAllByIds(userIds: IntArray): List<Note>
 
-
-
     @Insert
     fun insertAll(vararg users: Note)
 
