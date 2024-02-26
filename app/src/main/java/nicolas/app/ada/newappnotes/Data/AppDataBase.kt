@@ -1,4 +1,9 @@
 package nicolas.app.ada.newappnotes.Data
 
-abstract class AppDataBase {
+import androidx.room.Database
+import androidx.room.RoomDatabase
+
+@Database(entities = [Note::class], version = 1)
+abstract class AppDataBase :RoomDatabase() {
+    abstract fun noteDao():NoteDao
 }
