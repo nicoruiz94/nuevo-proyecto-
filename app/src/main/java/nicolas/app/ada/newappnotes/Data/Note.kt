@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class Note (
     @PrimaryKey val uid : Int?,
     @ColumnInfo (name = "color") val color : String?,
-    @ColumnInfo (name= "text")val text : String?,
+    @ColumnInfo (name= "text") val text : String?,
     @ColumnInfo (name = "date") val date : Int?
 
 )
