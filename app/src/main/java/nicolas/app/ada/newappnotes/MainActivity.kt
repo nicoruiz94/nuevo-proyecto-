@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     }
     val db =Room.databaseBuilder(
         applicationContext,
+
         AppDataBase::class.java, "database-name"
     ).build()
     val noteDao = db.noteDao()
