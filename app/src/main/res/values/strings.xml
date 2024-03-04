@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">New App Notes</string>
+    <string name="ButtonSave">Save</string>
+    <string name="type_here">type here</string>
 </resources>
