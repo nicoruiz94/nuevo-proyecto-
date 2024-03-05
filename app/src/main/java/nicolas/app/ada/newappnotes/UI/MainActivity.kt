@@ -4,6 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import nicolas.app.ada.newappnotes.Data.AppDataBase
 import nicolas.app.ada.newappnotes.Data.Note
 import nicolas.app.ada.newappnotes.Data.NoteDao
@@ -17,22 +20,25 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val recyclerView : RecyclerView =findViewById(R.id.recyclerview)
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerview)
         initDataBase()
         configureRecyclerView(recyclerView)
 
     }
 
-    fun configureRecyclerView(recyclerView: RecyclerView){
+    fun configureRecyclerView(recyclerView: RecyclerView) {
         recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         noteAdapter = NoteAdapter(arrayOf())
     }
-    fun initDataBase(){
+
+    fun initDataBase() {
+        GlobalScope.launch(Dispatchers.IO){
         val db = Room.databaseBuilder(
             applicationContext,
             AppDataBase::class.java, "database-name"
         ).build()
-         noteDao = db.noteDao()
+        noteDao = db.noteDao()
         val notes: List<Note> = noteDao.getAll()
     }
+ }
 }
