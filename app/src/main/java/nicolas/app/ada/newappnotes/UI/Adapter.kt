@@ -7,26 +7,26 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import nicolas.app.ada.newappnotes.R
 
-class Adapter(private val dataSet: Array<String>) :
+class Adapter(private val notes: Array<String>) :
     RecyclerView.Adapter<Adapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView
 
         init {
-            textView = view.findViewById(R.id.textView)
+            textView = view.findViewById(R.id.iditText)
         }
     }
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
 
         val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.text_row_item, viewGroup, false)
+            .inflate(R.layout.stickynote, viewGroup, false)
 
         return ViewHolder(view)
     }
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.textView.text = dataSet[position]
+        viewHolder.textView.text = notes[position]
     }
-    override fun getItemCount() = dataSet.size
+    override fun getItemCount() = notes.size
 
 }
