@@ -5,10 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import nicolas.app.ada.newappnotes.Data.Note
 import nicolas.app.ada.newappnotes.R
 
-class Adapter(private val notes: Array<String>) :
-    RecyclerView.Adapter<Adapter.ViewHolder>() {
+class NoteAdapter(private val notesList: Array<Note>) :
+    RecyclerView.Adapter<NoteAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView
@@ -17,16 +18,18 @@ class Adapter(private val notes: Array<String>) :
             textView = view.findViewById(R.id.iditText)
         }
     }
+    // inflar vista
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.stickynote, viewGroup, false)
 
         return ViewHolder(view)
     }
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.textView.text = notes[position]
+        val note = notesList [position]
+        viewHolder.textView.text = note.text
     }
-    override fun getItemCount() = notes.size
+    //conteo de intems
+    override fun getItemCount() = notesList.size
 
 }
